@@ -41,5 +41,7 @@ jobs:
       run: |
         git config --global user.name 'github-actions[bot]'
         git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+        # Only stage seen_titles.txt, ignore other changes
         git add seen_titles.txt
-        git diff --quiet && git diff --staged --quiet || (git commit -m "Update seen_titles.txt" && git push)
+        # Check if seen_titles.txt has changes
+        git diff --staged --quiet || (git commit -m "Update seen_titles.txt" && git push)
